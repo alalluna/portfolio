@@ -11,10 +11,18 @@ const TAB_DATA = [
       <ul className="list-disc pl-2">
         <li>Node.js</li>
         <li>Express</li>
-        <li>PostgreSQL</li>
-        <li>Sequelize</li>
+        <li>Mongo DB</li>
+        <li>MySQL</li>
+        <li>PHP</li>
         <li>JavaScript</li>
         <li>React</li>
+        <li>Css</li>
+        <li>Tailwind</li>
+        <li>Bootstrap</li>
+        <li>Surge</li>
+        <li>Render</li>
+        <li>Netlifly</li>
+        <li>Vercel</li>
       </ul>
     ),
   },
@@ -23,8 +31,11 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Fullstack Academy of Code</li>
-        <li>University of California, Santa Cruz</li>
+        <li>2022-2023 Higher course of web development technician </li>
+        <li>2020-2022 Higher course of web graphic design </li>
+        <li>Master of Educationin fine arts 2010</li>
+        <li>Fine arts 2002-2009</li>
+
       </ul>
     ),
   },
@@ -33,8 +44,21 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
-        <li>AWS Cloud Practitioner</li>
-        <li>Google Professional Cloud Developer</li>
+        <li>2024 Fullstack Bootcamp - MERN - Eurofirms</li>
+        <li>2023 Developer Certification Javascript algorithms and data structures - FreeCodeCamp</li>
+      </ul>
+    ),
+  },
+  {
+    title: "Experience",
+    id: "Experience",
+    content: (
+      <ul className="list-disc pl-2">
+        <li>2024 Fullstack Bootcamp - MERN- Eurofirms</li>
+        <li>2024 Developer business internships - Informatica Valencia</li>
+        <li>2023 Designer business intership - Spanish Ole, Sevilla</li>
+        <li>2008 II Animation prize -La Marvarrosa animation contest</li>
+        <li>2003-22 Freelance designer - Valencia-Pontevedra-Sevilla</li>
       </ul>
     ),
   },
