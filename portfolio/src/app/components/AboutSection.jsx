@@ -31,6 +31,9 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
+        <li>2024 UX Design: UX/UI user experience + Figma 2024 - Udemy </li>
+        <li>2024 Fullstack Bootcamp - MERN - Eurofirms</li>
+        <li>2023 Developer Certification Javascript algorithms and data structures - FreeCodeCamp</li>
         <li>2022-2023 Higher course of web development technician </li>
         <li>2020-2022 Higher course of web graphic design </li>
         <li>Master of Educationin fine arts 2010</li>
@@ -44,21 +47,12 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
-        <li>2024 Fullstack Bootcamp - MERN - Eurofirms</li>
-        <li>2023 Developer Certification Javascript algorithms and data structures - FreeCodeCamp</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Experience",
-    id: "Experience",
-    content: (
-      <ul className="list-disc pl-2">
         <li>2024 Fullstack Bootcamp - MERN- Eurofirms</li>
         <li>2024 Developer business internships - Informatica Valencia</li>
         <li>2023 Designer business intership - Spanish Ole, Sevilla</li>
         <li>2008 II Animation prize -La Marvarrosa animation contest</li>
         <li>2003-22 Freelance designer - Valencia-Pontevedra-Sevilla</li>
+
       </ul>
     ),
   },
@@ -75,18 +69,13 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white" id="about">
+    <section className="text-cyan-950" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
         <Image src="/images/about-image.png" width={500} height={500} />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
-            I am a full stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-            Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am a team player and
-            I am excited to work with others to create amazing applications.
+
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
@@ -108,7 +97,7 @@ const AboutSection = () => {
               active={tab === "certifications"}
             >
               {" "}
-              Certifications{" "}
+              Experience{" "}
             </TabButton>
           </div>
           <div className="mt-8">
