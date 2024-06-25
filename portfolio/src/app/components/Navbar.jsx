@@ -24,23 +24,24 @@ const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className="fixed mx-auto border border-[#1d1d1e] top-0 left-0 right-0 z-40 bg-[#c9c8c8] bg-opacity-100">
-      <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
+    <nav className="fixed mx-auto border border-black-100 top-0 left-0 right-0 z-40 bg-gray-100 bg-opacity-100">
+      <div className="flex container lg:py-2 flex-wrap items-center justify-between mx-auto px-4 py-2">
         <Link
           href={"/"}
-        ><img src="/images/logo.png" className="h-18"></img></Link>
+          className=""
+        ><img src="/images/logo-black.png" className="h-16"></img></Link>
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (
             <button
               onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-cyan-950 text-cyan-950 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-stone-900 text-stone-900 hover:text-white hover:border-white"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
             <button
               onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-cyan-950 text-cyan-950 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-stone-900 text-stone-900 hover:text-white hover:border-white"
             >
               <XMarkIcon className="h-5 w-5" />
             </button>
