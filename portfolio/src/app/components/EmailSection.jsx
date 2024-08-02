@@ -150,8 +150,7 @@ const EmailSection = () => {
         )}
       </div>
     </section>
-  );
-};
-
+  )
+}
 export default EmailSection;
 
