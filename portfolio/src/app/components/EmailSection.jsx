@@ -1,71 +1,50 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import emailjs from "@emailjs/browser";
-import dotenv from "dotenv"
-
-dotenv.config()
 
 const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
-
   const form = useRef();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     email: e.target.email.value,
-  //     subject: e.target.subject.value,
-  //     message: e.target.message.value,
-  //   };
-  //   const JSONdata = JSON.stringify(data);
-  //   const endpoint = "/api/send";
+  useEffect(() => {
+    const formElement = form.current;
 
-  // Form the request for sending data to the server.
-  // const options = {
-  // The method is POST because we are sending data.
-  // method: "POST",
-  // Tell the server we're sending JSON.
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
-  // Body of the request is the JSON data we created above.
-  // body: JSONdata,
-  // };
-
-  // const response = await fetch(endpoint, options);
-  // const resData = await response.json();
-
-  // if (response.status === 200) {
-  //   console.log("Message sent.");
-  //   setEmailSubmitted(true);
-  // }
-
-  const btn = document.getElementById('button');
-
-  document.getElementById('form')
-    .addEventListener('submit', function (event) {
+    const sendEmail = (event) => {
       event.preventDefault();
 
-      btn.value = 'Sending...';
+      const btn = document.getElementById("button");
+      btn.value = "Sending...";
 
-      const serviceID = 'default_service';
-      const templateID = 'template_nhcfy3w';
+      const serviceID = "default_service";
+      const templateID = "template_znoda9g";
+      const userID = "cQDtsn8a0icOW08HE"; // Reemplaza con tu Public Key
 
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(() => {
-          btn.value = 'Send Email';
-          alert('Sent!');
-        }, (err) => {
-          btn.value = 'Send Email';
-          alert(JSON.stringify(err));
-        });
-    });
+      emailjs
+        .sendForm(serviceID, templateID, formElement, userID)
+        .then(
+          () => {
+            btn.value = "Send Email";
+            setEmailSubmitted(true);
+            formElement.reset();
+            alert("Sent!");
+          },
+          (err) => {
+            btn.value = "Send Email";
+            alert(JSON.stringify(err));
+          }
+        );
+    };
 
-  // };
+    formElement.addEventListener("submit", sendEmail);
+
+    return () => {
+      formElement.removeEventListener("submit", sendEmail);
+    };
+  }, []);
 
   return (
     <section
@@ -98,20 +77,46 @@ const EmailSection = () => {
             Email sent successfully!
           </p>
         ) : (
-          <form className="flex flex-col" id="form" onSubmit={sendEmail}>
+          <form className="flex flex-col" id="form" ref={form}>
             <div className="mb-6 field">
-              <label htmlFor="from_name" id="from_name" className="text-white block mb-2 text-sm font-medium"> Your name </label>
+              <label
+                htmlFor="to_name"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                To name
+              </label>
               <input
-                name="frmo_name"
+                name="to_name"
+                type="text"
+                id="to_name"
+                required
+                className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                placeholder="Recipient's name"
+              />
+            </div>
+            <div className="mb-6 field">
+              <label
+                htmlFor="from_name"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                Your name
+              </label>
+              <input
+                name="from_name"
                 type="text"
                 id="from_name"
                 required
                 className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="youremail@google.com"
+                placeholder="Your name"
               />
             </div>
-            <div className="mb-6 field">
-              <label htmlFor="email" className="text-white block mb-2 text-sm font-medium"> Your email </label>
+            <div className="mb-6">
+              <label
+                htmlFor="email"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                Your email
+              </label>
               <input
                 name="email"
                 type="email"
@@ -121,22 +126,6 @@ const EmailSection = () => {
                 placeholder="youremail@google.com"
               />
             </div>
-            {/* <div className="mb-6">
-              <label
-                htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Subject
-              </label>
-              <input
-                name="subject"
-                type="text"
-                id="subject"
-                required
-                className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Just saying hi"
-              />
-            </div> */}
             <div className="mb-6">
               <label
                 htmlFor="message"
@@ -152,17 +141,17 @@ const EmailSection = () => {
               />
             </div>
             <input
-              type="submit" id="button" value="Send Email"
+              type="submit"
+              id="button"
+              value="Send Email"
               className="bg-cyan-600 hover:bg-cyan-400 text-white font-medium py-2.5 px-5 rounded-lg w-full"
-            >
-              Send Message
-            </input>
+            />
           </form>
         )}
       </div>
     </section>
-
   );
 };
 
 export default EmailSection;
+
