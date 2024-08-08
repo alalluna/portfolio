@@ -1,43 +1,50 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 
 const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const form = useRef();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
+  useEffect(() => {
+    const formElement = form.current;
+
+    const sendEmail = (event) => {
+      event.preventDefault();
+
+      const btn = document.getElementById("button");
+      btn.value = "Sending...";
+
+      const serviceID = "default_service";
+      const templateID = "template_znoda9g";
+      const userID = "cQDtsn8a0icOW08HE"; // Reemplaza con tu Public Key
+
+      emailjs
+        .sendForm(serviceID, templateID, formElement, userID)
+        .then(
+          () => {
+            btn.value = "Send Email";
+            setEmailSubmitted(true);
+            formElement.reset();
+            alert("Sent!");
+          },
+          (err) => {
+            btn.value = "Send Email";
+            alert(JSON.stringify(err));
+          }
+        );
     };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
 
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
+    formElement.addEventListener("submit", sendEmail);
+
+    return () => {
+      formElement.removeEventListener("submit", sendEmail);
     };
-
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
-
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
-    }
-  };
+  }, []);
 
   return (
     <section
@@ -70,7 +77,39 @@ const EmailSection = () => {
             Email sent successfully!
           </p>
         ) : (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
+          <form className="flex flex-col" id="form" ref={form}>
+            {/* <div className="mb-6 field">
+              <label
+                htmlFor="to_name"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                To name
+              </label>
+              <input
+                name="to_name"
+                type="text"
+                id="to_name"
+                required
+                className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                placeholder="Recipient's name"
+              />
+            </div> */}
+            <div className="mb-6 field">
+              <label
+                htmlFor="from_name"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                Your name
+              </label>
+              <input
+                name="from_name"
+                type="text"
+                id="from_name"
+                required
+                className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                placeholder="Your name"
+              />
+            </div>
             <div className="mb-6">
               <label
                 htmlFor="email"
@@ -89,22 +128,6 @@ const EmailSection = () => {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Subject
-              </label>
-              <input
-                name="subject"
-                type="text"
-                id="subject"
-                required
-                className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Just saying hi"
-              />
-            </div>
-            <div className="mb-6">
-              <label
                 htmlFor="message"
                 className="text-white block text-sm mb-2 font-medium"
               >
@@ -117,17 +140,17 @@ const EmailSection = () => {
                 placeholder="Let's talk about..."
               />
             </div>
-            <button
+            <input
               type="submit"
-              className="bg-cyan-300 hover:bg-cyan-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
-            >
-              Send Message
-            </button>
+              id="button"
+              value="Send Email"
+              className="bg-cyan-600 hover:bg-cyan-400 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+            />
           </form>
         )}
       </div>
     </section>
-  );
-};
-
+  )
+}
 export default EmailSection;
+
