@@ -78,7 +78,7 @@ const EmailSection = () => {
           </p>
         ) : (
           <form className="flex flex-col" id="form" ref={form}>
-            <div className="mb-6 field">
+            {/* <div className="mb-6 field">
               <label
                 htmlFor="to_name"
                 className="text-white block mb-2 text-sm font-medium"
@@ -93,7 +93,7 @@ const EmailSection = () => {
                 className="bg-gray-800 border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Recipient's name"
               />
-            </div>
+            </div> */}
             <div className="mb-6 field">
               <label
                 htmlFor="from_name"
