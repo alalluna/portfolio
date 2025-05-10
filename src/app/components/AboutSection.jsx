@@ -66,7 +66,7 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
-        <li>2024 Full Stack Developer - Personal project of Art's academy (until now)</li>
+        <li>2024 Full Stack Developer - Personal project of Arts academy (until now)</li>
         <li>2024 Developer business internships - Informatica Valencia</li>
         <li>2023 Designer business intership - Spanish Ole, Sevilla</li>
         <li>2008 II Animation prize -La Marvarrosa animation contest</li>
@@ -74,17 +74,17 @@ const TAB_DATA = [
       </ul>
     ),
   },
-];
+]
 
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition()
 
   const handleTabChange = (id) => {
     startTransition(() => {
-      setTab(id);
-    });
-  };
+      setTab(id)
+    })
+  }
 
   return (
     <section className="text-white" id="about">
@@ -125,7 +125,7 @@ const AboutSection = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default AboutSection;
+export default AboutSection
