@@ -7,7 +7,9 @@ const TAB_DATA = [
     title: "Skills",
     id: "skills",
     content: (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      // <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 center py-4 px-2 xl:gap-2
+       sm:py-2 xl:px-4">
         <ul className="list-disc pl-4">
           <li>Node.js</li>
           <li>Express</li>
@@ -22,7 +24,7 @@ const TAB_DATA = [
           <li>Surge</li>
           <li>Render</li>
           <li>Netlify</li>
-          
+
         </ul>
         <ul className="list-disc pl-4">
           <li>PHP</li>
@@ -36,7 +38,7 @@ const TAB_DATA = [
           <li>Bootstrap</li>
           <li>Mockito</li>
           <li>Postman</li>
-          <li>Swagger</li> 
+          <li>Swagger</li>
           <li>Vercel</li>
 
         </ul>
@@ -87,43 +89,47 @@ const AboutSection = () => {
   }
 
   return (
-    <section className="text-white" id="about">
-      <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-12 xl:px-8">
-        {/* <Image src="/images/about-image.png" width={500} height={500} /> */}
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <p className="text-base lg:text-sm">
-            I am a full stack web developer with a passion for creating interactive and responsive web applications. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am excited to work with others in a team.
-          </p>
-          <div className="flex flex-row justify-start mt-8">
-            <TabButton
-              selectTab={() => handleTabChange("skills")}
-              active={tab === "skills"}
-            >
-              {" "}
-              Skills{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              {" "}
-              Education & Certifications{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Experience & Awards{" "}
-            </TabButton>
-          </div>
-          <div className="mt-8">
-            {TAB_DATA.find((t) => t.id === tab).content}
-          </div>
+    <section className="text-white lg:min-h-screen" id="about">
+      {/* <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-12 xl:px-8"> */}
+      <div className="grid gap-6 items-center py-4 px-2 xl:gap-8 sm:py-12 xl:px-18">
+        {/* <div className="mt-4 md:mt-0 text-left flex flex-col h-full"> */}
+        <h2 className="text-center text-4xl font-bold text-white mt-4 mb-2 md:mb-8">
+          About Me</h2>
+        <p className="hidden md:block text-center text-base lg:text-sm">
+          I am a full stack web developer with a passion for creating interactive and responsive web applications.
+        </p>
+        <p className="hidden md:block text-center text-base lg:text-sm">
+         I am a quick learner and I am always looking to expand my knowledge and skill set. I am excited to work in a team.
+        </p>
+
+        <div className="flex flex-row justify-start mt-8">
+          <TabButton
+            selectTab={() => handleTabChange("skills")}
+            active={tab === "skills"}
+          >
+            {" "}
+            Skills{" "}
+          </TabButton>
+          <TabButton
+            selectTab={() => handleTabChange("education")}
+            active={tab === "education"}
+          >
+            {" "}
+            Education & Certifications{" "}
+          </TabButton>
+          <TabButton
+            selectTab={() => handleTabChange("certifications")}
+            active={tab === "certifications"}
+          >
+            {" "}
+            Experience & Awards{" "}
+          </TabButton>
+        </div>
+        <div className="mt-8">
+          {TAB_DATA.find((t) => t.id === tab).content}
         </div>
       </div>
+      {/* </div> */}
     </section>
   )
 }
